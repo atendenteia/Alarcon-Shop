@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarcon Shop</title>
+    <link rel="icon" href="https://img.icons8.com/ios/50/000000/avocado.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            overflow-x: hidden; /* Impede rolagem horizontal na página */
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #28a745; /* Verde */
+            text-transform: uppercase; /* Letras maiúsculas */
+        }
+        .search-bar {
+            margin-top: 10px;
+        }
+        .search-bar input {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .search-bar button {
+            padding: 10px;
+            border: none;
+            background-color: #28a745; /* Verde */
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: -5px;
+        }
+        .search-bar button:hover {
+            background-color: #218838; /* Verde escuro */
+        }
+        .container, .ads-container, .bottom-products-container {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto; /* Permite rolagem horizontal */
+            padding: 20px;
+        }
+        .product, .ads {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            text-align: center;
+            margin-right: 20px;
+            flex: 0 0 auto; /* Evita que itens se redimensionem */
+            width: 250px;
+        }
+        .product img, .ads img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .product h2, .ads h2 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .product p, .ads p {
+            color: #28a745; /* Verde */
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .product button {
+            background-color: #28a745; /* Verde */
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .product button:hover {
+            background-color: #218838; /* Verde escuro */
+        }
+        .separator {
+            height: 40px; /* Espaço entre as seções */
+        }
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #218838; /* Verde escuro */
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .chat-button:hover {
+            background-color: #1e7e34; /* Verde ainda mais escuro */
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            margin-top: 20px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+        .footer p {
+            margin: 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Alarcon Shop</h1>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar produtos...">
+            <button onclick="searchProducts()">Buscar</button>
+        </div>
+    </div>
+
+    <div class="container" id="productContainer">
+        <!-- Produtos - Parte Superior -->
+        <div class="product" data-name="Produto 1">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 1">
+            <h2>Produto 1</h2>
+            <p>R$ 99,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 2">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 2">
+            <h2>Produto 2</h2>
+            <p>R$ 149,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 3">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 3">
+            <h2>Produto 3</h2>
+            <p>R$ 199,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 4">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 4">
+            <h2>Produto 4</h2>
+            <p>R$ 249,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 5">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 5">
+            <h2>Produto 5</h2>
+            <p>R$ 299,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 6">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 6">
+            <h2>Produto 6</h2>
+            <p>R$ 349,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 7">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 7">
+            <h2>Produto 7</h2>
+            <p>R$ 399,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 8">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 8">
+            <h2>Produto 8</h2>
+            <p>R$ 449,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 9">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 9">
+            <h2>Produto 9</h2>
+            <p>R$ 499,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 10">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 10">
+            <h2>Produto 10</h2>
+            <p>R$ 549,90</p>
+            <button>Comprar</button>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="ads-container">
+        <!-- Anúncios -->
+        <div class="ads">
+            <h2>Anúncio 1</h2>
+            <img src="https://via.placeholder.com/250x150" alt="Anúncio 1">
+            <p>Descontos incríveis em eletrônicos! Aproveite agora.</p>
+        </div>
+        <div class="ads">
+            <h2>Anúncio 2</h2>
+            <img src="https://via.placeholder.com/250x150" alt="Anúncio 2">
+            <p>Ofertas especiais em moda para você. Não perca!</p>
+        </div>
+        <div class="ads">
+            <h2>Anúncio 3</h2>
+            <img src="https://via.placeholder.com/250x150" alt="Anúncio 3">
+            <p>Confira nossas promoções de verão e economize!</p>
+        </div>
+        <div class="ads">
+            <h2>Anúncio 4</h2>
+            <img src="https://via.placeholder.com/250x150" alt="Anúncio 4">
+            <p>Novidades em utensílios para casa. Veja agora!</p>
+        </div>
+        <div class="ads">
+            <h2>Anúncio 5</h2>
+            <img src="https://via.placeholder.com/250x150" alt="Anúncio 5">
+            <p>Super ofertas em cosméticos. Confira!</p>
+        </div>
+        <div class="ads">
+            <h2>Anúncio 6</h2>
+            <img src="https://via.placeholder.com/250x150" alt="Anúncio 6">
+            <p>Promoções em eletrodomésticos. Aproveite!</p>
+        </div>
+        <div class="ads">
+            <h2>Anúncio 7</h2>
+            <img src="https://via.placeholder.com/250x150" alt="Anúncio 7">
+            <p>Ofertas especiais em móveis para sua casa!</p>
+        </div>
+        <div class="ads">
+            <h2>Anúncio 8</h2>
+            <img src="https://via.placeholder.com/250x150" alt="Anúncio 8">
+            <p>Descontos imperdíveis em produtos esportivos!</p>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="bottom-products-container" id="bottomProductContainer">
+        <!-- Produtos - Parte Inferior -->
+        <div class="product" data-name="Produto 11">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 11">
+            <h2>Produto 11</h2>
+            <p>R$ 599,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 12">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 12">
+            <h2>Produto 12</h2>
+            <p>R$ 649,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 13">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 13">
+            <h2>Produto 13</h2>
+            <p>R$ 699,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 14">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 14">
+            <h2>Produto 14</h2>
+            <p>R$ 749,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 15">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 15">
+            <h2>Produto 15</h2>
+            <p>R$ 799,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 16">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 16">
+            <h2>Produto 16</h2>
+            <p>R$ 849,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 17">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 17">
+            <h2>Produto 17</h2>
+            <p>R$ 899,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 18">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 18">
+            <h2>Produto 18</h2>
+            <p>R$ 949,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 19">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 19">
+            <h2>Produto 19</h2>
+            <p>R$ 999,90</p>
+            <button>Comprar</button>
+        </div>
+        <div class="product" data-name="Produto 20">
+            <img src="https://via.placeholder.com/250x150" alt="Produto 20">
+            <h2>Produto 20</h2>
+            <p>R$ 1.049,90</p>
+            <button>Comprar</button>
+        </div>
+    </div>
+
+    <button class="chat-button" onclick="openChat()">💬</button>
+
+    <div class="footer">
+        <p>Nossos produtos são os melhores do mercado. Qualidade e inovação para você!</p>
+    </div>
+
+    <script>
+        function searchProducts() {
+            var input = document.getElementById('searchInput').value.toLowerCase();
+            var products = document.querySelectorAll('.product');
+            
+            products.forEach(function(product) {
+                var name = product.getAttribute('data-name').toLowerCase();
+                if (name.includes(input)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        function openChat() {
+            alert('Aqui seria o chat com a atendente virtual.');
+            // Aqui você pode adicionar a lógica para abrir o chat com a atendente virtual.
+            // Pode ser uma integração com um serviço de chat ou um iframe, por exemplo.
+        }
+    </script>
+</body>
+</html>
